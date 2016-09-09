@@ -1,0 +1,226 @@
+<html>
+  <head>
+    <title>Website</title>
+
+    <!--- Styles -->
+    <link rel="stylesheet" href="bower_components/patternfly/dist/css/patternfly.min.css">
+    <link rel="stylesheet" href="bower_components/patternfly/dist/css/patternfly-additions.min.css">
+    <link rel="stylesheet" href="bower_components/angular-patternfly/dist/styles/angular-patternfly.min.css"/>
+
+    <!-- jQuery -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Patternfly itself -->
+    <script src="bower_components/patternfly/dist/js/patternfly.min.js"></script>
+
+    <!-- Angular -->
+    <script src="bower_components/angular/angular.js"></script>
+
+    <!--- UI Bootstrap -->
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+    <!--- Angular Patternfly -->
+    <script src="bower_components/angular-patternfly/dist/angular-patternfly.min.js"></script>
+
+    <!-- special thingies -->
+    <script src="bower_components/matchHeight/jquery.matchHeight.js"></script>
+    <script src="bower_components/bootstrap/js/tooltip.js"></script>
+
+    <!-- locally cached data for demoing -->
+    <script src="load_test_data.js"></script>
+    <script src="script.js"></script>
+
+    <script src="bower_components/google-code-prettify/src/prettify.js"></script>
+
+    <script type="text/javascript">
+      var app = angular.module("myapp", [
+      'patternfly'
+      ]);
+
+      app.controller("MainController", function($scope) {
+      $scope.msg = "Hello World";
+      })
+    </script>
+
+    <style>
+      hr {
+      display: block;
+      height: 10px;
+      border: 0;
+      border-top: 1px solid #525252;
+      margin: 1em 0;
+      padding: 0;
+      }
+    </style>
+  </head>
+  <body ng-app="myapp" class="cards-pf">
+
+    <nav class="navbar navbar-default navbar-pf" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+          <img src="bower_components/patternfly/src/img/brand.svg" alt="PatternFly Enterprise Application" />
+        </a>
+      </div>
+      <div class="collapse navbar-collapse navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-utility">
+        </ul>
+        <ul class="nav navbar-nav navbar-primary">
+          <li class="active">
+            <a href="#">Overview</a>
+          </li>
+          <li>
+            <a href="#">General Settings</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+      <!-- <div class="row" ng-controller="YamlCtrl"> -->
+      <!--   <div class="col-md-1"> -->
+      <!--   </div> -->
+      <!--   <div class="col-md-10" id="YAMLDisplay" items="items"> -->
+
+    <div class="container-fluid container-cards-pf" ng-controller="PanelCountCtrl">
+      <div class="row row-cards-pf">
+        <div class="col-xs-6 col-sm-4 col-md-4">
+          <div class="card-pf card-pf-accented card-pf-aggregate-status card-pf-aggregate-status-mini">
+            <h2 class="card-pf-title">
+              <span class="fa pficon-enterprise"></span>
+              <span class="card-pf-aggregate-status-count">{{ masters }}</span> Masters
+            </h2>
+            <div class="card-pf-body">
+              <p class="card-pf-aggregate-status-notifications">
+                <span class="card-pf-aggregate-status-notification"><a href="#" class="add" data-toggle="tooltip" data-placement="top" title="Add Master"><span class="pficon pficon-add-circle-o"></span></a></span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-4">
+          <div class="card-pf card-pf-accented card-pf-aggregate-status card-pf-aggregate-status-mini">
+            <h2 class="card-pf-title">
+              <a href="#">
+                <span class="fa pficon-builder-image"></span>
+                <span class="card-pf-aggregate-status-count">{{ nodes }}</span> Nodes
+              </a>
+            </h2>
+            <div class="card-pf-body">
+              <p class="card-pf-aggregate-status-notifications">
+                <span class="card-pf-aggregate-status-notification"><a href="#" class="add" data-toggle="tooltip" data-placement="top" title="Add Node"><span class="pficon pficon-add-circle-o"></span></a></span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-4">
+          <div class="card-pf card-pf-accented card-pf-aggregate-status card-pf-aggregate-status-mini">
+            <h2 class="card-pf-title">
+              <a href="#">
+                <span class="pficon pficon-replicator"></span>
+                <span class="card-pf-aggregate-status-count">{{ etcd }}</span> etcd
+              </a>
+            </h2>
+            <div class="card-pf-body">
+              <p class="card-pf-aggregate-status-notifications">
+                <span class="card-pf-aggregate-status-notification"><a href="#" class="add" data-toggle="tooltip" data-placement="top" title="Add Load Balancer"><span class="pficon pficon-add-circle-o"></span></a></span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /row -->
+    </div><!-- /container -->
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-10">
+          <div class="panel panel-default">
+            <!-- ##################################################### -->
+            <div class="panel-heading">
+              <h3 class="panel-title">Hosts Overview</h3>
+            </div>
+            <div class="panel-body">
+
+              <div ng-controller="ViewCtrl" class="row" style="display:inline-block; width: 100%;">
+                <div class="col-md-12">
+                  <div pf-card-view id="exampleCardView" config="config" items="items">
+                    <div class="col-md-12">
+                      public_ip: <code>{{item.public_ip}}</code>
+                    </div>
+                    <div class="col-md-12">
+                      node_labels: <code>{{item.node_labels}}</code>
+                    </div>
+                    <div class="col-md-12">
+                      connect_to: <code>{{item.connect_to}}</code>
+                    </div>
+                    <div class="col-md-12">
+                      ip: <code>{{item.ip}}</code>
+                    </div>
+
+                    <div class="col-md-12">
+                      public_hostname: <code>{{item.public_hostname}}</code>
+                    </div>
+                    <div class="col-md-12">
+                      host_name: <code>{{item.hostname}}</code>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div> <!-- /panel -->
+          </div>
+          <div class="col-md-1">
+          </div>
+        </div> <!-- /row -->
+      </div>
+
+      <div class="row" ng-controller="YamlCtrl">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-10" id="YAMLDisplay" items="items">
+          <div class="panel panel-default">
+            <!-- ##################################################### -->
+            <div class="panel-heading">
+              <h3 class="panel-title">installer.cfg.json</h3>
+            </div>
+            <div class="panel-body">
+
+              <pre class="prettyprint">
+                <p class="my-class">{{ installer_yaml | json }}</p>
+              </pre>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1">
+        </div>
+      </div>
+    </div> <!-- /container -->
+
+
+    <hr />
+
+    <script>
+      $(function() {
+      // matchHeight the contents of each .card-pf and then the .card-pf itself
+      $(".row-cards-pf > [class*='col'] > .card-pf .card-pf-title").matchHeight();
+      $(".row-cards-pf > [class*='col'] > .card-pf > .card-pf-body").matchHeight();
+      $(".row-cards-pf > [class*='col'] > .card-pf > .card-pf-footer").matchHeight();
+      $(".row-cards-pf > [class*='col'] > .card-pf").matchHeight();
+      // initialize tooltips
+      $('[data-toggle="tooltip"]').tooltip();
+      });
+    </script>
+
+
+
+  </body>
+</html>

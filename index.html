@@ -1,0 +1,225 @@
+<html>
+  <head>
+    <title>Website</title>
+
+    <!--- Styles -->
+    <link rel="stylesheet" href="bower_components/patternfly/dist/css/patternfly.min.css">
+    <link rel="stylesheet" href="bower_components/patternfly/dist/css/patternfly-additions.min.css">
+    <link rel="stylesheet" href="bower_components/angular-patternfly/dist/styles/angular-patternfly.min.css"/>
+
+    <!-- jQuery -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Patternfly itself -->
+    <script src="bower_components/patternfly/dist/js/patternfly.min.js"></script>
+
+    <!-- Angular -->
+    <script src="bower_components/angular/angular.js"></script>
+
+    <!--- UI Bootstrap -->
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+    <!--- Angular Patternfly -->
+    <script src="bower_components/angular-patternfly/dist/angular-patternfly.min.js"></script>
+
+    <!-- special thingies -->
+    <script src="bower_components/matchHeight/jquery.matchHeight.js"></script>
+    <script src="bower_components/bootstrap/js/tooltip.js"></script>
+
+    <script type="text/javascript">
+      var app = angular.module("myapp", [
+      'patternfly'
+      ]);
+
+      app.controller("MainController", function($scope) {
+      $scope.msg = "Hello World";
+      })
+    </script>
+  </head>
+  <body ng-app="myapp" class="cards-pf">
+
+    <nav class="navbar navbar-default navbar-pf" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+          <img src="bower_components/patternfly/src/img/brand.svg" alt="PatternFly Enterprise Application" />
+        </a>
+      </div>
+      <div class="collapse navbar-collapse navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-utility">
+        </ul>
+        <ul class="nav navbar-nav navbar-primary">
+          <li>
+            <a href="#">Overview</a>
+          </li>
+          <li class="active">
+            <a href="#">General Settings</a>
+          </li>
+          <!-- <li> -->
+          <!--   <a href="#">And Another</a> -->
+          <!-- </li> -->
+          <!-- <li> -->
+          <!--   <a href="#">As a General Rule</a> -->
+          <!-- </li> -->
+          <!-- <li> -->
+          <!--   <a href="#">Five to Seven Links</a> -->
+          <!-- </li> -->
+          <!-- <li> -->
+          <!--   <a href="#">Is Good</a> -->
+          <!-- </li> -->
+        </ul>
+      </div>
+    </nav>
+
+
+    <div class="container-fluid container-cards-pf">
+      <div class="row row-cards-pf">
+        <div class="col-xs-6 col-sm-4 col-md-4">
+          <div class="card-pf card-pf-accented card-pf-aggregate-status card-pf-aggregate-status-mini">
+            <h2 class="card-pf-title">
+              <span class="fa pficon-enterprise"></span>
+              <span class="card-pf-aggregate-status-count">0</span> Masters
+            </h2>
+            <div class="card-pf-body">
+              <p class="card-pf-aggregate-status-notifications">
+                <span class="card-pf-aggregate-status-notification"><a href="#" class="add" data-toggle="tooltip" data-placement="top" title="Add Master"><span class="pficon pficon-add-circle-o"></span></a></span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-4">
+          <div class="card-pf card-pf-accented card-pf-aggregate-status card-pf-aggregate-status-mini">
+            <h2 class="card-pf-title">
+              <a href="#">
+                <span class="fa pficon-builder-image"></span>
+                <span class="card-pf-aggregate-status-count">0</span> Nodes
+              </a>
+            </h2>
+            <div class="card-pf-body">
+              <p class="card-pf-aggregate-status-notifications">
+                <span class="card-pf-aggregate-status-notification"><a href="#" class="add" data-toggle="tooltip" data-placement="top" title="Add Node"><span class="pficon pficon-add-circle-o"></span></a></span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-4">
+          <div class="card-pf card-pf-accented card-pf-aggregate-status card-pf-aggregate-status-mini">
+            <h2 class="card-pf-title">
+              <a href="#">
+                <span class="pficon fa-tachometer"></span>
+                <span class="card-pf-aggregate-status-count">0</span> Load Balancers
+              </a>
+            </h2>
+            <div class="card-pf-body">
+              <p class="card-pf-aggregate-status-notifications">
+                <span class="card-pf-aggregate-status-notification"><a href="#" class="add" data-toggle="tooltip" data-placement="top" title="Add Load Balancer"><span class="pficon pficon-add-circle-o"></span></a></span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /row -->
+    </div><!-- /container -->
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+          <div class="panel panel-default">
+
+            <div class="panel-heading">
+              <h3 class="panel-title">General Settings</h3>
+            </div>
+
+            <div class="panel-body">
+
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="textInput-markup">Remote User</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="textInput-markup" class="form-control" value="root"/>
+                    <p class="help-block">Non-root users must have password-less <code>sudo</code> capabilities</p>
+                  </div>
+
+                  <label class="col-sm-2 control-label" for="textInput-markup">HTTP Proxy</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="textInput-markup" class="form-control" placeholder="(Optional)">
+                  </div>
+                  <label class="col-sm-2 control-label" for="textInput-markup">HTTPS Proxy</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="textInput-markup" class="form-control" placeholder="(Optional)">
+                  </div>
+
+                  <label class="col-sm-2 control-label" for="textInput-markup">Default Subdomain</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="textInput-markup" class="form-control" placeholder="(Optional)">
+                  </div>
+
+                  <label class="col-sm-2 control-label" for="textInput-markup">Load Balancer</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="textInput-markup" class="form-control" placeholder="(Optional)">
+                  </div>
+
+                </div> <!-- /form-group -->
+
+		<button type="submit" class="btn btn-default">Save Settings</button>
+              </form>
+
+            </div>
+
+          </div> <!-- /panel -->
+
+        </div>
+        <div class="col-md-8">
+        </div>
+      </div> <!-- /row -->
+    </div> <!-- /container -->
+
+
+    <hr />
+
+    <script>
+      $(function() {
+      // matchHeight the contents of each .card-pf and then the .card-pf itself
+      $(".row-cards-pf > [class*='col'] > .card-pf .card-pf-title").matchHeight();
+      $(".row-cards-pf > [class*='col'] > .card-pf > .card-pf-body").matchHeight();
+      $(".row-cards-pf > [class*='col'] > .card-pf > .card-pf-footer").matchHeight();
+      $(".row-cards-pf > [class*='col'] > .card-pf").matchHeight();
+      // initialize tooltips
+      $('[data-toggle="tooltip"]').tooltip();
+      });
+    </script>
+
+
+    <!-- <div class="blank-slate-pf"> -->
+    <!--   <div class="blank-slate-pf-icon"> -->
+    <!--     <span class="pficon pficon pficon-add-circle-o"></span> -->
+    <!--   </div> -->
+    <!--   <h1> -->
+    <!--     Empty State Title -->
+    <!--   </h1> -->
+    <!--   <p> -->
+    <!--     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. -->
+    <!--   </p> -->
+    <!--   <p> -->
+    <!--     Learn more about this <a href="#">on the documentation</a>. -->
+    <!--   </p> -->
+    <!--   <div class="blank-slate-pf-main-action"> -->
+    <!--     <button class="btn btn-primary btn-lg"> Main Action </button> -->
+    <!--   </div> -->
+    <!--   <div class="blank-slate-pf-secondary-action"> -->
+    <!--     <button class="btn btn-default"> Secondary Action </button> <button class="btn btn-default"> Secondary Action </button> <button class="btn btn-default"> Secondary Action </button> -->
+    <!--   </div> -->
+    <!-- </div> -->
+
+
+  </body>
+</html>

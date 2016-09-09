@@ -1,0 +1,22 @@
+{
+  "name": "angular2",
+  "authors": [
+    "Tim Bielawa <tbielawa@redhat.com>"
+  ],
+  "description": "testing patternfl",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "patternfly": "^3.10.0",
+    "angular-patternfly": "patternfly-angular#^3.10.0"
+  }
+}
