@@ -63,7 +63,7 @@ angular.module('patternfly.views').controller(
                      "node",
                      "storage"
                  ],
-                 "node_labels": "{'region': 'infra'}",
+                 "node_labels": JSON.parse('{"region": "infra"}'),
                  "connect_to": "m01.example.com",
                  "ip": "192.168.124.243",
                  "public_hostname": "m01.example.com",
@@ -74,7 +74,7 @@ angular.module('patternfly.views').controller(
                  "roles": [
                      "node"
                  ],
-                 "node_labels": "{'region': 'infra'}",
+                 "node_labels": angular.fromJson('{"region": "infra"}'),
                  "connect_to": "n01.example.com",
                  "ip": "192.168.124.247",
                  "public_hostname": "n01.example.com",
